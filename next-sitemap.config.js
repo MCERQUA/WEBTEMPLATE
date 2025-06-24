@@ -7,8 +7,6 @@ module.exports = {
   priority: 0.7,
   sitemapSize: 5000,
   exclude: [
-    '/test-tailwind',
-    '/structured-data-demo',
     '/404',
     '/500',
     '/_*',
@@ -26,8 +24,6 @@ module.exports = {
           '/admin/',
           '/dashboard/',
           '/_next/',
-          '/test-tailwind',
-          '/structured-data-demo',
         ],
       },
     ],
