@@ -36,6 +36,7 @@ npm run lint            # Run Next.js linter
 - **Layout Components** (`/components/layout/`): Header and Footer used in root layout
 - **Section Components** (`/components/sections/`): Hero, ServiceGrid, CTASection - reusable page sections
 - **UI Components** (`/components/ui/`): Button, Card - atomic design components
+- **Business Components** (`/components/business/`): ContactForm, BusinessHours, TestimonialCard, etc.
 - All components use `"use client"` directive when they need client-side features (useState, onClick, etc.)
 
 ### Configuration
@@ -62,10 +63,13 @@ npm run lint            # Run Next.js linter
 
 ## Known Issues & Considerations
 
-- Hero background images are referenced but not included (`/images/hero-bg.jpg`)
-- Contact form is frontend-only - needs backend implementation for actual submission
+- Hero background images are referenced but not included (`/public/images/hero-bg.jpg`)
+- Contact form is configured for Netlify Forms with proper attributes
 - The project uses Next.js 15 with React 19, which may have compatibility issues with some packages
 
-## Testing Tailwind CSS
+## Image Optimization
 
-A test page exists at `/app/test-tailwind/page.tsx` to verify Tailwind utilities are working correctly after any configuration changes.
+- Uses Sharp for image optimization
+- Scripts available for generating blur placeholders:
+  - `npm run generate-blur` - Generate blur data for images
+  - `npm run create-placeholders` - Create placeholder images
