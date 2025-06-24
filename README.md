@@ -14,6 +14,40 @@ A modern, modular Next.js 15 website template designed for local service busines
 - Mobile-first responsive design
 - Component-based architecture (all files <150 lines)
 
+## 📚 Documentation
+
+- **[PROJECT_SETUP.md](PROJECT_SETUP.md)** - Complete setup guide with directory structure
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history and updates
+- **[CLAUDE.md](CLAUDE.md)** - AI development assistance guide
+
+## 🚦 Quick Start
+
+### Initial Setup
+```bash
+# Clone the repository
+git clone https://github.com/MCERQUA/WEBTEMPLATE.git
+cd WEBTEMPLATE
+
+# Run the cleanup script to remove demo files
+chmod +x FINAL_CLEANUP.sh
+./FINAL_CLEANUP.sh
+
+# Install dependencies
+npm install
+
+# Create necessary directories
+mkdir -p public/images/{hero,services,blog,team,testimonials,gallery}
+mkdir -p lib/{constants,validations,services}
+
+# Copy .env.example to .env.local
+cp .env.example .env.local
+
+# Run development server
+npm run dev
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to see your site.
+
 ## 📁 Project Structure
 
 ```
@@ -44,7 +78,7 @@ WEBTEMPLATE/
 │   ├── utils/            # Helper functions
 │   └── hooks/            # Custom React hooks
 ├── public/               # Static assets
-│   └── images/           # Images (optimized)
+│   └── images/           # Images (to be created)
 └── scripts/              # Build & utility scripts
 ```
 
@@ -168,39 +202,35 @@ image: "/images/blog/post.jpg"
 Blog content in MDX format...
 ```
 
-## 🚦 Getting Started
+## 🚀 Development Commands
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- Git
-
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/MCERQUA/WEBTEMPLATE.git
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-```
-
-### Development Commands
 ```bash
 npm run dev        # Start development server (localhost:3000)
 npm run build      # Build for production
 npm run start      # Start production server
 npm run lint       # Run ESLint
+npm run generate-blur    # Generate blur data for images
+npm run create-placeholders # Create placeholder images
 ```
 
-### Deployment
-Optimized for Netlify deployment:
+## 📦 Deployment
+
+### Netlify (Recommended)
 1. Connect GitHub repository to Netlify
 2. Build command: `npm run build`
 3. Publish directory: `.next`
-4. Environment variables in `.env.example`
+4. Environment variables: Add from `.env.example`
+
+The template includes:
+- `netlify.toml` with security headers
+- Netlify Forms integration in ContactForm
+- Optimized build configuration
+
+### Other Platforms
+See deployment guides for:
+- Vercel
+- AWS Amplify
+- Traditional hosting
 
 ## 📋 Key Features Explained
 
@@ -287,7 +317,14 @@ export default async function Page({
 ```
 
 ### Missing Assets
-Hero background images are referenced but not included. Add your own images to `/public/images/`.
+Hero background images are referenced but not included. Add your own images to `/public/images/` following the structure in PROJECT_SETUP.md.
+
+## 🤝 Contributing
+
+This template is designed to be a starting point. Feel free to:
+- Fork and customize for your needs
+- Submit issues for bugs or improvements
+- Share your customizations with the community
 
 ## 📄 License
 
