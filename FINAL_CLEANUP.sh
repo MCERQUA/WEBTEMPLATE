@@ -43,10 +43,11 @@ rmdir app/test-tailwind 2>/dev/null
 # Remove other unnecessary files
 echo "🗑️  Removing other unnecessary files..."
 rm -f public/contact.html  # Static HTML that conflicts with Next.js routing
-rm -f git_config.txt       # Personal configuration file
-rm -f GIT-UPDATE-REPO.bat  # Windows-specific script
 
-# Remove this cleanup script itself
+# Note: Keeping git_config.txt, GIT-UPDATE-REPO.bat, and GIT-PULL-REPO.bat
+# as these are useful for repository management
+
+# Remove this cleanup script itself and other cleanup-related files
 echo "🗑️  Removing cleanup scripts..."
 rm -f CLEANUP.sh
 rm -f DELETE_THESE_FOLDERS.md
@@ -59,7 +60,8 @@ echo "📋 Summary of changes:"
 echo "- ✅ Removed reviews system (keeping TestimonialCard)"
 echo "- ✅ Removed QuoteRequestForm (keeping ContactForm)"
 echo "- ✅ Removed all demo pages"
-echo "- ✅ Removed unnecessary files (contact.html, git_config.txt, GIT-UPDATE-REPO.bat)"
+echo "- ✅ Removed unnecessary files (contact.html)"
+echo "- ✅ Kept Git utility files (GIT-UPDATE-REPO.bat, GIT-PULL-REPO.bat, git_config.txt)"
 echo "- ✅ Updated documentation files"
 echo ""
 echo "🚀 Next steps:"
