@@ -4,6 +4,8 @@ import { Hero } from "@/components/sections/Hero"
 import { CTASection } from "@/components/sections/CTASection"
 import { Card } from "@/components/ui/Card"
 import { Check } from "lucide-react"
+import { BreadcrumbSchema, ServiceSchema, FAQSchema } from "@/components/seo"
+import { siteConfig } from "@/config/site.config"
 
 // This would typically come from a CMS or database
 const services = {
@@ -73,6 +75,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${service.title} | Local Service Company`,
     description: service.description,
+    openGraph: {
+      title: `${service.title} | Local Service Company`,
+      description: service.description,
+      url: `${siteConfig.url}/services/${resolvedParams.slug}`,
+      type: "website",
+    },
   }
 }
 
@@ -83,9 +91,44 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   if (!service) {
     notFound()
   }
+
+  // Generate FAQ items based on service features
+  const faqItems = [
+    {
+      question: `What is included in ${service.title}?`,
+      answer: `Our ${service.title} includes: ${service.features.slice(0, 3).join(", ")}. Contact us for a complete list of services included.`
+    },
+    {
+      question: `How much does ${service.title} cost?`,
+      answer: `${service.title} ${service.price}. We provide detailed quotes after assessing your specific needs.`
+    },
+    {
+      question: `How quickly can you provide ${service.title}?`,
+      answer: resolvedParams.slug === "emergency" 
+        ? "We offer 24/7 emergency response with arrival times typically under 2 hours."
+        : "We typically schedule services within 24-48 hours. Contact us for current availability."
+    }
+  ]
   
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: service.title, url: `/services/${resolvedParams.slug}` }
+        ]}
+      />
+      <ServiceSchema
+        name={service.title}
+        description={service.longDescription}
+        provider={siteConfig.name}
+        serviceType="Service"
+        areaServed={[siteConfig.address.city, siteConfig.address.state]}
+        url={`/services/${resolvedParams.slug}`}
+        priceRange={service.price}
+      />
+      <FAQSchema items={faqItems} />
       <Hero
         title={service.title}
         description={service.description}

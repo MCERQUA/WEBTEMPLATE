@@ -58,3 +58,7 @@ Thumbs.db
 # Local development
 dev.log
 server.pid
+
+# Sitemap files
+/public/sitemap*.xml
+/public/robots.txt

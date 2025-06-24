@@ -5,6 +5,9 @@ import { Hero } from "@/components/sections/Hero"
 import { CTASection } from "@/components/sections/CTASection"
 import { Card } from "@/components/ui/Card"
 import { Calendar, Clock, ArrowLeft, User } from "lucide-react"
+import { BreadcrumbSchema } from "@/components/seo"
+import { siteConfig } from "@/config/site.config"
+import { generateArticleSchema } from "@/lib/utils/structured-data"
 
 // This would typically come from a CMS or database
 const blogPosts = {
@@ -109,6 +112,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} | Local Service Company Blog`,
     description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `${siteConfig.url}/blog/${resolvedParams.slug}`,
+      type: "article",
+      publishedTime: post.date,
+      authors: [post.author],
+    },
   }
 }
 
@@ -119,9 +130,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) {
     notFound()
   }
+
+  const articleSchema = generateArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    author: post.author,
+    datePublished: post.date,
+    url: `/blog/${resolvedParams.slug}`,
+  })
   
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: post.title, url: `/blog/${resolvedParams.slug}` }
+        ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="mx-auto max-w-4xl">
           <Link

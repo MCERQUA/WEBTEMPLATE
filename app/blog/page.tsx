@@ -3,10 +3,18 @@ import Link from "next/link"
 import { Hero } from "@/components/sections/Hero"
 import { Card } from "@/components/ui/Card"
 import { ArrowRight, Calendar, Clock } from "lucide-react"
+import { BreadcrumbSchema } from "@/components/seo"
+import { siteConfig } from "@/config/site.config"
 
 export const metadata: Metadata = {
   title: "Blog | Local Service Company",
   description: "Tips, insights, and updates from our team of experts.",
+  openGraph: {
+    title: "Blog | Local Service Company",
+    description: "Tips, insights, and updates from our team of experts.",
+    url: `${siteConfig.url}/blog`,
+    type: "website",
+  },
 }
 
 // This would typically come from a CMS or database
@@ -49,6 +57,12 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" }
+        ]}
+      />
       <Hero
         title="Our Blog"
         description="Stay informed with tips, insights, and industry updates from our team of experts."

@@ -1,0 +1,184 @@
+---
+title: Customer Testimonials
+description: Real reviews from our satisfied customers
+featured: true
+---
+
+import { ReviewGrid, ReviewCarousel } from '@/components/reviews';
+
+export const featuredReviews = [
+  {
+    id: '1',
+    author: 'Sarah Johnson',
+    rating: 5,
+    date: new Date('2024-01-15'),
+    content: 'Absolutely fantastic service! The team went above and beyond to ensure everything was perfect. They were professional, punctual, and the quality of work exceeded my expectations. I couldn\'t be happier with the results.',
+    source: 'Google',
+    verified: true,
+    helpful: 42,
+    service: 'Home Renovation',
+    businessResponse: {
+      content: 'Thank you so much for your kind words, Sarah! We\'re thrilled to hear you\'re happy with your home renovation. It was a pleasure working with you!',
+      date: new Date('2024-01-16')
+    }
+  },
+  {
+    id: '2',
+    author: 'Michael Chen',
+    rating: 5,
+    date: new Date('2024-01-10'),
+    content: 'I\'ve used many services in the area, but this company stands out. Their attention to detail is remarkable, and they completed the project ahead of schedule. Highly recommend!',
+    source: 'Yelp',
+    verified: true,
+    helpful: 38,
+    service: 'Kitchen Remodeling'
+  },
+  {
+    id: '3',
+    author: 'Emily Rodriguez',
+    rating: 4.5,
+    date: new Date('2024-01-05'),
+    content: 'Great experience overall. The team was knowledgeable and kept me informed throughout the process. Minor hiccup with scheduling, but they made it right. Would use again.',
+    source: 'Facebook',
+    verified: true,
+    helpful: 25,
+    service: 'Bathroom Renovation'
+  }
+];
+
+export const allReviews = [
+  ...featuredReviews,
+  {
+    id: '4',
+    author: 'David Thompson',
+    rating: 5,
+    date: new Date('2023-12-28'),
+    content: 'Exceptional quality and customer service. They transformed our outdated living space into something truly special. Worth every penny!',
+    source: 'Google',
+    verified: true,
+    helpful: 31,
+    service: 'Living Room Design'
+  },
+  {
+    id: '5',
+    author: 'Lisa Park',
+    rating: 5,
+    date: new Date('2023-12-20'),
+    content: 'Professional, reliable, and skilled. The team handled our project with care and expertise. Communication was excellent throughout.',
+    source: 'Website',
+    verified: true,
+    helpful: 28,
+    service: 'Full Home Renovation'
+  },
+  {
+    id: '6',
+    author: 'James Wilson',
+    rating: 4,
+    date: new Date('2023-12-15'),
+    content: 'Good service overall. The work quality is excellent, though the initial quote was a bit higher than competitors. However, you get what you pay for.',
+    source: 'Yelp',
+    verified: true,
+    helpful: 19,
+    service: 'Deck Installation'
+  },
+  {
+    id: '7',
+    author: 'Maria Garcia',
+    rating: 5,
+    date: new Date('2023-12-10'),
+    content: 'I can\'t say enough good things! From start to finish, the experience was seamless. They listened to our needs and delivered beyond expectations.',
+    source: 'Google',
+    verified: true,
+    helpful: 35,
+    service: 'Kitchen Remodeling',
+    businessResponse: {
+      content: 'Maria, thank you for trusting us with your kitchen remodel. We\'re so happy you love the results!',
+      date: new Date('2023-12-11')
+    }
+  },
+  {
+    id: '8',
+    author: 'Robert Anderson',
+    rating: 5,
+    date: new Date('2023-12-05'),
+    content: 'Top-notch service! They completed our basement renovation on time and within budget. The attention to detail was impressive.',
+    source: 'Facebook',
+    verified: true,
+    helpful: 22,
+    service: 'Basement Finishing'
+  },
+  {
+    id: '9',
+    author: 'Jennifer Lee',
+    rating: 4.5,
+    date: new Date('2023-11-30'),
+    content: 'Very pleased with the outcome. The team was professional and cleaned up thoroughly each day. Would definitely recommend to friends and family.',
+    source: 'Google',
+    verified: true,
+    helpful: 27,
+    service: 'Flooring Installation'
+  },
+  {
+    id: '10',
+    author: 'Thomas Brown',
+    rating: 5,
+    date: new Date('2023-11-25'),
+    content: 'Outstanding craftsmanship! They turned our vision into reality. The project manager kept us informed every step of the way.',
+    source: 'Website',
+    verified: true,
+    helpful: 30,
+    service: 'Custom Cabinetry'
+  }
+];
+
+# Customer Testimonials
+
+<ReviewCarousel reviews={featuredReviews} className="mb-12" />
+
+## All Reviews
+
+<ReviewGrid reviews={allReviews} showSummary={true} />
+
+## Review Schema Data
+
+For SEO purposes, here's how to implement structured data for reviews:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Your Business Name",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah Johnson"
+      },
+      "datePublished": "2024-01-15",
+      "reviewBody": "Absolutely fantastic service! The team went above and beyond...",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }
+  ]
+}
+```
+
+## Best Practices for Reviews
+
+1. **Authenticity**: Always use real customer reviews, never fake ones
+2. **Verification**: Implement a system to verify customers before they can leave reviews
+3. **Response**: Respond to all reviews, both positive and negative
+4. **Display**: Show a mix of ratings to build trust
+5. **Schema Markup**: Implement proper schema.org markup for SEO benefits
+6. **Legal Compliance**: Follow FTC guidelines for testimonials and endorsements

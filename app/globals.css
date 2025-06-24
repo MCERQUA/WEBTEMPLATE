@@ -63,6 +63,58 @@
   }
 }
 
+/* External Component Compatibility Layer */
+@layer components {
+  [data-external-component] {
+    /* Reset external component styles */
+    --external-primary: hsl(var(--primary));
+    --external-secondary: hsl(var(--secondary));
+    --external-success: #10b981;
+    --external-danger: hsl(var(--destructive));
+    --external-warning: #f59e0b;
+    --external-info: hsl(var(--primary));
+    --external-light: hsl(var(--muted));
+    --external-dark: hsl(var(--foreground));
+    
+    /* Typography */
+    --external-font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    --external-font-size-base: 0.875rem;
+    --external-line-height-base: 1.5;
+    
+    /* Spacing */
+    --external-spacing-unit: 0.25rem;
+    
+    /* Borders */
+    --external-border-radius: var(--radius);
+    --external-border-color: hsl(var(--border));
+    
+    /* Shadows */
+    --external-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --external-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --external-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --external-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* External component resets */
+  [data-external-component] * {
+    @apply transition-colors;
+  }
+  
+  [data-external-component] button {
+    @apply font-medium;
+  }
+  
+  [data-external-component] input,
+  [data-external-component] textarea,
+  [data-external-component] select {
+    @apply font-normal;
+  }
+  
+  [data-external-component] a {
+    @apply no-underline hover:opacity-80;
+  }
+}
+
 /* Keyframes */
 @keyframes fadeIn {
   from {

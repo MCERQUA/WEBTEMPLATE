@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
 import { siteConfig } from "@/config/site.config"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { ContactStructuredData } from "@/components/seo/ContactStructuredData"
 
 // export const metadata: Metadata = {
 //   title: "Contact Us | Local Service Company",
@@ -61,6 +62,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <ContactStructuredData />
       <Hero
         title="Contact Us"
         description="Get in touch for a free consultation and quote. We're here to help with all your service needs."

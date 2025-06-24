@@ -3,10 +3,17 @@ import { Hero } from "@/components/sections/Hero"
 import { CTASection } from "@/components/sections/CTASection"
 import { Card } from "@/components/ui/Card"
 import { siteConfig } from "@/config/site.config"
+import { BreadcrumbSchema, FAQSchema } from "@/components/seo"
 
 export const metadata: Metadata = {
   title: "About Us | Local Service Company",
   description: "Learn about our company, mission, and the team behind our quality services.",
+  openGraph: {
+    title: "About Us | Local Service Company",
+    description: "Learn about our company, mission, and the team behind our quality services.",
+    url: `${siteConfig.url}/about`,
+    type: "website",
+  },
 }
 
 const teamMembers = [
@@ -35,8 +42,34 @@ const stats = [
 ]
 
 export default function AboutPage() {
+  const faqItems = [
+    {
+      question: "How long have you been in business?",
+      answer: "We've been proudly serving our community since 2010, with over 10 years of experience in the industry."
+    },
+    {
+      question: "Are your technicians certified?",
+      answer: "Yes, all our technicians are fully certified, licensed, and undergo continuous training to stay current with industry standards."
+    },
+    {
+      question: "What makes you different from competitors?",
+      answer: "Our commitment to quality, transparent pricing, and exceptional customer service sets us apart. We treat every project as if it were our own."
+    },
+    {
+      question: "Do you offer any guarantees?",
+      answer: "Absolutely! We stand behind our work with a comprehensive satisfaction guarantee on all services."
+    }
+  ]
+
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "About", url: "/about" }
+        ]}
+      />
+      <FAQSchema items={faqItems} />
       <Hero
         title="About Our Company"
         description="Dedicated to providing exceptional service since 2010. Learn about our journey, values, and commitment to excellence."
