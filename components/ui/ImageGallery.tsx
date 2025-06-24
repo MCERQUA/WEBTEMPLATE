@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import OptimizedImage from './OptimizedImage';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/cn';
 import { ASPECT_RATIOS } from '@/lib/images/image-utils';
 
 export interface GalleryImage {

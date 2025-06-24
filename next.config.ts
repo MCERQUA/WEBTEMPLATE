@@ -21,11 +21,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  
-  // Experimental features for better performance
-  experimental: {
-    optimizeCss: true,
-  },
 };
 
 export default nextConfig;

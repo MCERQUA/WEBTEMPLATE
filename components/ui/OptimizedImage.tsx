@@ -2,8 +2,8 @@
 
 import Image, { ImageProps } from 'next/image';
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
-import { shimmer, solidPlaceholder } from '@/lib/images/blur-placeholder';
+import { cn } from '@/lib/utils/cn';
+import { shimmer, solidPlaceholder } from '@/lib/images/client-placeholders';
 
 export interface OptimizedImageProps extends Omit<ImageProps, 'placeholder'> {
   fallbackSrc?: string;

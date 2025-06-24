@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
-import { shimmer } from '@/lib/images/blur-placeholder';
+import { cn } from '@/lib/utils/cn';
+import { shimmer } from '@/lib/images/client-placeholders';
 
 interface BackgroundImageProps {
   src: string;

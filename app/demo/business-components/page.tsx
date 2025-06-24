@@ -29,41 +29,34 @@ const businessHours: DayHours[] = [
 const serviceAreas: ServiceArea[] = [
   {
     name: 'Downtown',
-    coordinates: { lat: 40.7128, lng: -74.006 },
+    coordinates: [40.7128, -74.006],
     radius: 5,
-    color: '#3b82f6',
-    description: 'Same-day service available',
   },
   {
     name: 'Suburbs',
-    coordinates: { lat: 40.7580, lng: -73.9855 },
+    coordinates: [40.7580, -73.9855],
     radius: 10,
-    color: '#10b981',
-    description: 'Next-day service',
   },
 ]
 
 const testimonials: Testimonial[] = [
   {
-    id: '1',
     name: 'John Smith',
-    role: 'Homeowner',
+    title: 'Homeowner',
     content: 'Excellent service! They fixed our plumbing issue quickly and professionally. Highly recommend!',
     rating: 5,
     date: '2024-01-15',
-    location: 'Downtown, NY',
-    image: { src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400', alt: 'John Smith' },
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
     verified: true,
+    source: 'google',
   },
   {
-    id: '2',
     name: 'Sarah Johnson',
-    role: 'Business Owner',
+    title: 'Business Owner',
     content: 'Professional team that knows their stuff. Fixed our commercial HVAC system with minimal downtime.',
     rating: 5,
     date: '2024-02-20',
-    location: 'Brooklyn, NY',
-    service: 'HVAC Repair',
+    source: 'yelp',
   },
 ]
 
@@ -186,17 +179,18 @@ export default function BusinessComponentsDemo() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Service Area Map</h2>
           <ServiceAreaMap
-            areas={serviceAreas}
-            center={{ lat: 40.7128, lng: -74.006 }}
+            serviceAreas={serviceAreas}
+            center={[40.7128, -74.006]}
             zoom={11}
             height="400px"
-            showLegend={true}
+            showBoundaries={true}
+            showMarkers={true}
             onAreaClick={(area) => setSelectedArea(area)}
           />
           {selectedArea && (
-            <div className="p-4 bg-muted rounded-lg">
+            <div className="p-4 bg-gray-100 rounded-lg">
               <p className="font-medium">Selected: {selectedArea.name}</p>
-              <p className="text-sm text-muted-foreground">{selectedArea.description}</p>
+              <p className="text-sm text-gray-600">Radius: {selectedArea.radius || 'N/A'} miles</p>
             </div>
           )}
         </section>
@@ -205,21 +199,19 @@ export default function BusinessComponentsDemo() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Testimonial Cards</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, index) => (
               <TestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-                variant="card"
-                showRating={true}
+                key={index}
+                {...testimonial}
+                variant="default"
               />
             ))}
           </div>
           <div className="mt-8">
             <h3 className="text-lg font-medium mb-4">Inline Variant</h3>
             <TestimonialCard
-              testimonial={testimonials[0]}
-              variant="inline"
-              showRating={true}
+              {...testimonials[0]}
+              variant="compact"
             />
           </div>
         </section>
