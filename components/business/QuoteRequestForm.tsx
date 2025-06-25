@@ -232,7 +232,7 @@ export function QuoteRequestForm({
     }
     
     fieldsToValidate.forEach(field => {
-      const error = validateField(field, formData[field])
+      const error = validateField(field, formData[field] || '')
       if (error) newErrors[field] = error
     })
     
