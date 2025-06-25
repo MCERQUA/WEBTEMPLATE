@@ -144,9 +144,9 @@ export default function StructuredDataDemoPage() {
               </p>
               <ol className="list-decimal list-inside space-y-2 text-gray-600">
                 <li>Open any page and view the page source</li>
-                <li>Look for <code className="bg-gray-100 px-2 py-1 rounded">script type="application/ld+json"</code> tags</li>
+                <li>Look for <code className="bg-gray-100 px-2 py-1 rounded">script type=&quot;application/ld+json&quot;</code> tags</li>
                 <li>Copy the JSON content and validate using Google&apos;s Rich Results Test</li>
-                <li>Use browser extensions like "Structured Data Testing Tool" for quick validation</li>
+                <li>Use browser extensions like &quot;Structured Data Testing Tool&quot; for quick validation</li>
               </ol>
               <div className="mt-4 p-4 bg-gray-50 rounded">
                 <p className="text-sm text-gray-600">
