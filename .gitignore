@@ -59,6 +59,9 @@ Thumbs.db
 dev.log
 server.pid
 
+# Git configuration (personal/local settings)
+git_config.txt
+
 # Sitemap files
 /public/sitemap*.xml
 /public/robots.txt
