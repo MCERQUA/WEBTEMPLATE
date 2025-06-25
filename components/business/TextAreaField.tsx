@@ -6,6 +6,7 @@ export interface TextAreaFieldProps {
   name: string
   value: string
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
   error?: string
   required?: boolean
   placeholder?: string
@@ -22,6 +23,7 @@ export function TextAreaField({
   name,
   value,
   onChange,
+  onBlur,
   error,
   required = false,
   placeholder,
@@ -48,6 +50,7 @@ export function TextAreaField({
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         required={required}
         placeholder={placeholder}
         disabled={disabled}
