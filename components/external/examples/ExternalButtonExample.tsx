@@ -245,7 +245,7 @@ export function ExternalButtonExamples() {
       <section className="mt-8 rounded-lg border bg-muted/50 p-4">
         <h3 className="mb-2 font-semibold">Integration Tips</h3>
         <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
-          <li>Choose the method that best fits your external library's API</li>
+          <li>Choose the method that best fits your external library&apos;s API</li>
           <li>Consider creating a dedicated adapter file for each external library</li>
           <li>Always test accessibility features after integration</li>
           <li>Document any prop mappings for team members</li>
