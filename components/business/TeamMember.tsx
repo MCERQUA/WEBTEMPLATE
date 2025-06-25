@@ -124,94 +124,78 @@ export function TeamMember({
     )
   }
 
-  const CardWrapper = profileUrl ? Link : 'div'
-  const cardProps = profileUrl ? { href: profileUrl } : onClick ? { onClick, role: 'button', tabIndex: 0 } : {}
+  const cardClassName = cn(
+    'group bg-card rounded-lg overflow-hidden transition-all hover:shadow-md',
+    (profileUrl || onClick) && 'cursor-pointer',
+    isFeatured && 'ring-2 ring-primary ring-offset-2',
+    className
+  )
 
-  if (compact) {
-    return (
-      <CardWrapper
-        {...cardProps}
-        className={cn(
-          'group bg-card rounded-lg overflow-hidden transition-all hover:shadow-md',
-          (profileUrl || onClick) && 'cursor-pointer',
-          isFeatured && 'ring-2 ring-primary ring-offset-2',
-          className
+  const compactContent = (
+    <div className="p-4 flex items-center gap-4">
+      {/* Avatar */}
+      {image && !imageError ? (
+        <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+          <Image
+            src={image.src}
+            alt={image.alt || name}
+            fill
+            className="object-cover"
+            sizes="64px"
+            onError={() => setImageError(true)}
+          />
+        </div>
+      ) : (
+        <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+          <span className="text-xl font-semibold text-muted-foreground">
+            {name.split(' ').map(n => n[0]).join('').toUpperCase()}
+          </span>
+        </div>
+      )}
+
+      {/* Info */}
+      <div className="flex-1 min-w-0">
+        <h3 className="font-semibold text-lg group-hover:text-primary transition-colors truncate">
+          {name}
+        </h3>
+        <p className="text-sm text-muted-foreground truncate">{role}</p>
+        {experience && (
+          <p className="text-xs text-muted-foreground mt-1">
+            {experience} years experience
+          </p>
         )}
-      >
-        <div className="p-4 flex items-center gap-4">
-          {/* Avatar */}
-          {image && !imageError ? (
-            <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-              <Image
-                src={image.src}
-                alt={image.alt || name}
-                fill
-                className="object-cover"
-                sizes="64px"
-                onError={() => setImageError(true)}
-              />
-            </div>
-          ) : (
-            <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-              <span className="text-xl font-semibold text-muted-foreground">
-                {name.split(' ').map(n => n[0]).join('').toUpperCase()}
-              </span>
-            </div>
+      </div>
+
+      {/* Quick actions */}
+      {showContact && (email || phone) && (
+        <div className="flex gap-2">
+          {email && (
+            <a
+              href={`mailto:${email}`}
+              className="w-8 h-8 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors"
+              aria-label={`Email ${name}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Mail className="w-4 h-4" />
+            </a>
           )}
-
-          {/* Info */}
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-lg group-hover:text-primary transition-colors truncate">
-              {name}
-            </h3>
-            <p className="text-sm text-muted-foreground truncate">{role}</p>
-            {experience && (
-              <p className="text-xs text-muted-foreground mt-1">
-                {experience} years experience
-              </p>
-            )}
-          </div>
-
-          {/* Quick actions */}
-          {showContact && (email || phone) && (
-            <div className="flex gap-2">
-              {email && (
-                <a
-                  href={`mailto:${email}`}
-                  className="w-8 h-8 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors"
-                  aria-label={`Email ${name}`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <Mail className="w-4 h-4" />
-                </a>
-              )}
-              {phone && (
-                <a
-                  href={`tel:${phone}`}
-                  className="w-8 h-8 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors"
-                  aria-label={`Call ${name}`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <Phone className="w-4 h-4" />
-                </a>
-              )}
-            </div>
+          {phone && (
+            <a
+              href={`tel:${phone}`}
+              className="w-8 h-8 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors"
+              aria-label={`Call ${name}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Phone className="w-4 h-4" />
+            </a>
           )}
         </div>
-      </CardWrapper>
-    )
-  }
-
-  return (
-    <CardWrapper
-      {...cardProps}
-      className={cn(
-        'group bg-card rounded-lg overflow-hidden transition-all hover:shadow-lg',
-        (profileUrl || onClick) && 'cursor-pointer',
-        isFeatured && 'ring-2 ring-primary ring-offset-2',
-        className
       )}
-    >
+    </div>
+  )
+
+  const fullContent = (
+    <>
       {/* Header with image */}
       <div className="relative h-48 bg-gradient-to-br from-primary/10 to-primary/5">
         {isFeatured && (
@@ -392,6 +376,81 @@ export function TeamMember({
           )}
         </div>
       </div>
-    </CardWrapper>
+    </>
+  )
+
+  if (compact) {
+    if (profileUrl) {
+      return (
+        <Link href={profileUrl} className={cardClassName}>
+          {compactContent}
+        </Link>
+      )
+    }
+
+    if (onClick) {
+      return (
+        <div 
+          className={cardClassName}
+          onClick={onClick}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              onClick()
+            }
+          }}
+        >
+          {compactContent}
+        </div>
+      )
+    }
+
+    return (
+      <div className={cardClassName}>
+        {compactContent}
+      </div>
+    )
+  }
+
+  const fullCardClassName = cn(
+    'group bg-card rounded-lg overflow-hidden transition-all hover:shadow-lg',
+    (profileUrl || onClick) && 'cursor-pointer',
+    isFeatured && 'ring-2 ring-primary ring-offset-2',
+    className
+  )
+
+  if (profileUrl) {
+    return (
+      <Link href={profileUrl} className={fullCardClassName}>
+        {fullContent}
+      </Link>
+    )
+  }
+
+  if (onClick) {
+    return (
+      <div 
+        className={fullCardClassName}
+        onClick={onClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            onClick()
+          }
+        }}
+      >
+        {fullContent}
+      </div>
+    )
+  }
+
+  return (
+    <div className={fullCardClassName}>
+      {fullContent}
+    </div>
   )
 }
