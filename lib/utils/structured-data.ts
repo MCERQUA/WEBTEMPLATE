@@ -9,10 +9,10 @@ export interface StructuredDataConfig {
   phone: string
   email: string
   address: {
-    streetAddress: string
-    addressLocality: string
-    addressRegion: string
-    postalCode: string
+    streetAddress?: string
+    addressLocality?: string
+    addressRegion?: string
+    postalCode?: string
     addressCountry?: string
   }
   geo?: {
@@ -20,18 +20,26 @@ export interface StructuredDataConfig {
     longitude: number
   }
   priceRange?: string
-  openingHours?: string[]
+  openingHours?: Array<{
+    dayOfWeek: string | string[]
+    opens: string
+    closes: string
+  }>
 }
 
 export function getBusinessStructuredData(): StructuredDataConfig {
   const { name, description, url, phone, email, address, businessHours } = siteConfig
   
-  // Convert business hours to ISO 8601 format for structured data
+  // Convert business hours to structured data format
   const openingHours = Object.entries(businessHours)
     .filter(([_, hours]) => hours !== 'Closed')
     .map(([day, hours]) => {
-      const dayAbbr = day.slice(0, 2).charAt(0).toUpperCase() + day.slice(1, 2)
-      return `${dayAbbr} ${hours.replace(' - ', '-').replace(/\s+/g, '')}`
+      const [opens, closes] = hours.split(' - ')
+      return {
+        dayOfWeek: day.charAt(0).toUpperCase() + day.slice(1),
+        opens: opens.trim(),
+        closes: closes.trim()
+      }
     })
   
   return {
