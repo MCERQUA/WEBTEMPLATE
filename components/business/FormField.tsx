@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/cn'
 export interface FormFieldProps {
   label: string
   name: string
-  type?: 'text' | 'email' | 'tel' | 'number'
+  type?: 'text' | 'email' | 'tel' | 'number' | 'date'
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
