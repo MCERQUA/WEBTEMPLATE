@@ -51,3 +51,23 @@ All ESLint errors have been fixed and the build now passes successfully.
 **Final Fix Applied**: Fixed the last remaining unescaped apostrophe in ExternalButtonExample.tsx line 248 where "library's" was changed to "library&apos;s".
 
 **Build Status**: ✅ PASSING - Netlify build should now deploy successfully.
+
+### Issue: TypeScript Address Type Mismatch
+**Problem**: Type mismatch between address structure in structured data and LocalBusinessSchema component.
+
+**Error**: 
+```
+Type '{ street: string; city: string; state: string; zip: string; }' has no properties in common with type '{ streetAddress?: string | undefined; addressLocality?: string | undefined; addressRegion?: string | undefined; postalCode?: string | undefined; addressCountry?: string | undefined; }'.
+```
+
+**Solution**: Updated `lib/utils/structured-data.ts` to map address properties correctly:
+- `street` → `streetAddress`
+- `city` → `addressLocality` 
+- `state` → `addressRegion`
+- `zip` → `postalCode`
+- Added `addressCountry: 'US'`
+
+**Files Fixed**:
+- `lib/utils/structured-data.ts` - Updated StructuredDataConfig interface and getBusinessStructuredData function
+
+**Status**: ✅ RESOLVED

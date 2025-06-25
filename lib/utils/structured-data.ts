@@ -9,10 +9,11 @@ export interface StructuredDataConfig {
   phone: string
   email: string
   address: {
-    street: string
-    city: string
-    state: string
-    zip: string
+    streetAddress: string
+    addressLocality: string
+    addressRegion: string
+    postalCode: string
+    addressCountry?: string
   }
   geo?: {
     latitude: number
@@ -39,7 +40,13 @@ export function getBusinessStructuredData(): StructuredDataConfig {
     url,
     phone,
     email,
-    address,
+    address: {
+      streetAddress: address.street,
+      addressLocality: address.city,
+      addressRegion: address.state,
+      postalCode: address.zip,
+      addressCountry: 'US'
+    },
     logo: `${url}/logo.png`, // Update with actual logo path
     image: `${url}/business-image.jpg`, // Update with actual image path
     priceRange: '$$', // Adjust based on business
