@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Static Contact Form</title>
+</head>
+<body>
+  <!-- Hidden static form for Netlify Forms detection -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <select name="service">
+      <option value="residential">Residential Services</option>
+      <option value="commercial">Commercial Services</option>
+      <option value="emergency">Emergency Services</option>
+      <option value="other">Other</option>
+    </select>
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
