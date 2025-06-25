@@ -7,6 +7,7 @@ export interface FormFieldProps {
   type?: 'text' | 'email' | 'tel' | 'number'
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   error?: string
   required?: boolean
   placeholder?: string
@@ -23,6 +24,7 @@ export function FormField({
   type = 'text',
   value,
   onChange,
+  onBlur,
   error,
   required = false,
   placeholder,
@@ -49,6 +51,7 @@ export function FormField({
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         required={required}
         placeholder={placeholder}
         disabled={disabled}
