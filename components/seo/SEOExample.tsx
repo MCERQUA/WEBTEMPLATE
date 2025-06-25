@@ -10,6 +10,7 @@ import {
   ServiceSchema,
   MetaTags
 } from '@/components/seo'
+import { siteConfig } from '@/config/site.config'
 
 export function SEOExample() {
   // Example FAQ items
@@ -83,6 +84,19 @@ export function SEOExample() {
       <ServiceSchema
         name="Residential Service Package"
         description="Comprehensive residential service solutions including maintenance, repairs, and installations"
+        provider={{
+          name: siteConfig.name,
+          url: siteConfig.url,
+          telephone: siteConfig.phone,
+          email: siteConfig.email,
+          address: {
+            streetAddress: siteConfig.address.street,
+            addressLocality: siteConfig.address.city,
+            addressRegion: siteConfig.address.state,
+            postalCode: siteConfig.address.zip,
+            addressCountry: 'US'
+          }
+        }}
         serviceType="Home Services"
         areaServed={["Phoenix Metro Area"]}
         offers={{
