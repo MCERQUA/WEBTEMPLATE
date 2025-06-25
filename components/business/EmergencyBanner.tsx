@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { cn } from '@/lib/utils/cn'
 
 export interface EmergencyBannerProps {
@@ -42,6 +42,14 @@ export function EmergencyBanner({
   const [isVisible, setIsVisible] = useState(isActive)
   const [isAnimating, setIsAnimating] = useState(false)
 
+  const handleDismiss = useCallback(() => {
+    setIsAnimating(true)
+    setTimeout(() => {
+      setIsVisible(false)
+      onDismiss?.()
+    }, 300)
+  }, [onDismiss])
+
   useEffect(() => {
     if (isActive && autoHideAfter > 0) {
       const timer = setTimeout(() => {
@@ -50,7 +58,7 @@ export function EmergencyBanner({
 
       return () => clearTimeout(timer)
     }
-  }, [isActive, autoHideAfter])
+  }, [isActive, autoHideAfter, handleDismiss])
 
   useEffect(() => {
     setIsVisible(isActive)
@@ -60,14 +68,6 @@ export function EmergencyBanner({
       return () => clearTimeout(timer)
     }
   }, [isActive])
-
-  const handleDismiss = () => {
-    setIsAnimating(true)
-    setTimeout(() => {
-      setIsVisible(false)
-      onDismiss?.()
-    }, 300)
-  }
 
   if (!isVisible) return null
 
