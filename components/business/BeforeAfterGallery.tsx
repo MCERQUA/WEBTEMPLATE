@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils/cn'
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
@@ -55,40 +55,43 @@ function ImageComparisonSlider({
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const handleMove = (clientX: number) => {
+  const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return
 
     const rect = containerRef.current.getBoundingClientRect()
     const x = clientX - rect.left
     const percentage = (x / rect.width) * 100
     setPosition(Math.max(0, Math.min(100, percentage)))
-  }
+  }, [])
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!isDragging) return
     handleMove(e.clientX)
-  }
+  }, [isDragging, handleMove])
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!isDragging) return
     handleMove(e.touches[0].clientX)
-  }
+  }, [isDragging, handleMove])
+
+  const handleMouseUp = useCallback(() => setIsDragging(false), [])
+  const handleTouchEnd = useCallback(() => setIsDragging(false), [])
 
   useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove)
-      document.addEventListener('mouseup', () => setIsDragging(false))
+      document.addEventListener('mouseup', handleMouseUp)
       document.addEventListener('touchmove', handleTouchMove)
-      document.addEventListener('touchend', () => setIsDragging(false))
+      document.addEventListener('touchend', handleTouchEnd)
 
       return () => {
         document.removeEventListener('mousemove', handleMouseMove)
-        document.removeEventListener('mouseup', () => setIsDragging(false))
+        document.removeEventListener('mouseup', handleMouseUp)
         document.removeEventListener('touchmove', handleTouchMove)
-        document.removeEventListener('touchend', () => setIsDragging(false))
+        document.removeEventListener('touchend', handleTouchEnd)
       }
     }
-  }, [isDragging])
+  }, [isDragging, handleMouseMove, handleTouchMove, handleMouseUp, handleTouchEnd])
 
   return (
     <div
