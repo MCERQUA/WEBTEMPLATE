@@ -133,7 +133,7 @@ export function ContactForm({
     // Validate required fields
     const requiredFields: (keyof ContactFormData)[] = ['name', 'email', 'message']
     requiredFields.forEach(field => {
-      const error = validateField(field, formData[field])
+      const error = validateField(field, formData[field] || '')
       if (error) newErrors[field] = error
     })
     
