@@ -286,7 +286,7 @@ export function QuoteRequestForm({
       }
       
       setSubmitStatus('success')
-      setSubmitMessage('Thank you for your quote request! We\'ll review your project details and get back to you within 24 hours with a detailed estimate.')
+      setSubmitMessage('Thank you for your quote request! We&apos;ll review your project details and get back to you within 24 hours with a detailed estimate.')
       
       onSubmit?.(formData)
       onSuccess?.()
@@ -317,7 +317,7 @@ export function QuoteRequestForm({
       {/* Honeypot field for spam protection */}
       <div className="hidden">
         <label>
-          Don't fill this out if you're human: 
+          Don&apos;t fill this out if you&apos;re human: 
           <input name="bot-field" />
         </label>
       </div>
@@ -601,7 +601,7 @@ export function QuoteRequestForm({
               <p className="font-medium text-gray-700">Photo Upload</p>
             </div>
             <p className="text-sm text-gray-600">
-              After submitting this form, you'll have the option to email us photos of your project for a more accurate quote.
+              After submitting this form, you&apos;ll have the option to email us photos of your project for a more accurate quote.
             </p>
           </div>
           

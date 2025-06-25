@@ -75,7 +75,7 @@ export const ReviewCarousel: React.FC<ReviewCarouselProps> = ({
             />
             
             <blockquote className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 italic">
-              "{currentReview.content}"
+              &quot;{currentReview.content}&quot;
             </blockquote>
             
             <div className="flex items-center justify-center gap-4">
@@ -170,7 +170,7 @@ export const ReviewCarouselMinimal: React.FC<ReviewCarouselProps> = ({
       </div>
       
       <blockquote className="text-gray-700 mb-4 line-clamp-3">
-        "{currentReview.content}"
+        &quot;{currentReview.content}&quot;
       </blockquote>
       
       <div className="flex items-center justify-between">

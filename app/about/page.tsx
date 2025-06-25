@@ -95,7 +95,7 @@ export default function AboutPage() {
                 professionals is dedicated to exceeding your expectations on every project.
               </p>
               <p className="text-lg text-gray-600">
-                Today, we're proud to serve thousands of satisfied customers across the region, 
+                Today, we&apos;re proud to serve thousands of satisfied customers across the region,
                 maintaining our commitment to quality and customer satisfaction that has been our 
                 hallmark since day one.
               </p>

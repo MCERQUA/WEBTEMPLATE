@@ -4,6 +4,7 @@ import { ReviewCarousel } from './ReviewCarousel';
 import { Review } from './ReviewCard';
 import { getFeaturedReviews, generateAggregateRatingSchema } from './utils';
 import Head from 'next/head';
+import Link from 'next/link';
 
 // Example reviews data - in production, this would come from a database or CMS
 const sampleReviews: Review[] = [
@@ -121,18 +122,18 @@ export const ReviewsPageExample: React.FC<ReviewsPageExampleProps> = ({
                 Join hundreds of satisfied customers who trust us with their projects
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors"
                 >
                   Get a Free Quote
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/services"
                   className="inline-flex items-center justify-center px-6 py-3 border border-primary-600 text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 transition-colors"
                 >
                   View Our Services
-                </a>
+                </Link>
               </div>
             </div>
           </div>

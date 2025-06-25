@@ -185,7 +185,7 @@ export function ContactForm({
       }
       
       setSubmitStatus('success')
-      setSubmitMessage('Thank you for your message! We\'ll get back to you within 24 hours.')
+      setSubmitMessage('Thank you for your message! We&apos;ll get back to you within 24 hours.')
       
       // Clear form
       setFormData({
@@ -225,7 +225,7 @@ export function ContactForm({
       {/* Honeypot field for spam protection */}
       <div className="hidden">
         <label>
-          Don't fill this out if you're human: 
+          Don&apos;t fill this out if you&apos;re human: 
           <input name="bot-field" />
         </label>
       </div>

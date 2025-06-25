@@ -44,7 +44,7 @@ export function ServiceAreaChecker({
   title = 'Check Service Availability',
   description = 'Enter your ZIP code to see if we service your area',
   inAreaMessage = "Great news! We service your area.",
-  outOfAreaMessage = "We're sorry, but we don't currently service your area.",
+  outOfAreaMessage = "We&apos;re sorry, but we don&apos;t currently service your area.",
   showContactForm = true,
   analyticsEvent = 'service_area_check',
 }: ServiceAreaCheckerProps) {
@@ -180,7 +180,7 @@ export function ServiceAreaChecker({
               {inAreaMessage}
             </h4>
             <p className="text-green-700 mb-4">
-              We're happy to serve customers in {zipCode}.
+              We&apos;re happy to serve customers in {zipCode}.
             </p>
             <div className="space-y-3">
               <Button href="/contact" className="w-full">
@@ -206,7 +206,7 @@ export function ServiceAreaChecker({
               {outOfAreaMessage}
             </h4>
             <p className="text-red-700 mb-4">
-              We don't currently service {zipCode}, but we're always expanding.
+              We don&apos;t currently service {zipCode}, but we&apos;re always expanding.
             </p>
             
             {showAlternatives && nearbyAreas.length > 0 && (

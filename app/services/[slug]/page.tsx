@@ -12,7 +12,7 @@ const services = {
   "residential": {
     title: "Residential Services",
     description: "Complete home solutions with professional care",
-    longDescription: "Our residential services are designed to keep your home in perfect condition. From routine maintenance to emergency repairs, we've got you covered.",
+    longDescription: "Our residential services are designed to keep your home in perfect condition. From routine maintenance to emergency repairs, we&apos;ve got you covered.",
     features: [
       "Regular maintenance programs",
       "Emergency repair services",
@@ -42,7 +42,7 @@ const services = {
   "emergency": {
     title: "Emergency Services",
     description: "24/7 rapid response when you need it most",
-    longDescription: "When emergencies strike, we're here to help. Our emergency response team is available 24/7 to handle urgent situations.",
+    longDescription: "When emergencies strike, we&apos;re here to help. Our emergency response team is available 24/7 to handle urgent situations.",
     features: [
       "24/7 availability",
       "Rapid response (under 2 hours)",
@@ -152,7 +152,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
             
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">What's Included</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">What&apos;s Included</h3>
               <ul className="space-y-4">
                 {service.features.map((feature, index) => (
                   <li key={index} className="flex items-start">

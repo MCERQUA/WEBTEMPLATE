@@ -177,7 +177,7 @@ export function TestimonialCard({
           variant === 'detailed' && 'text-lg leading-relaxed'
         )}
       >
-        "{content}"
+        &quot;{content}&quot;
       </blockquote>
 
       {/* Footer */}

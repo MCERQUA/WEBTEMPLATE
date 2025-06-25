@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <input type="hidden" name="form-name" value="contact" />
                   <div hidden>
                     <label>
-                      Don't fill this out if you're human: <input name="bot-field" />
+                      Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
                     </label>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
