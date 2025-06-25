@@ -15,7 +15,7 @@ interface UseOptimizedImageReturn {
   isIntersecting: boolean;
   isLoaded: boolean;
   hasError: boolean;
-  ref: React.RefObject<HTMLDivElement>;
+  ref: React.RefObject<HTMLDivElement | null>;
 }
 
 export function useOptimizedImage({
