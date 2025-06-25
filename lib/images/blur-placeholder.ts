@@ -1,4 +1,4 @@
-import { getPlaiceholder } from 'plaiceholder';
+import { getPlaiceholder, type GetPlaiceholderReturn } from 'plaiceholder';
 
 export interface BlurDataURL {
   base64: string;
@@ -17,7 +17,10 @@ export interface BlurDataURL {
  */
 export async function getBlurDataURL(src: string): Promise<BlurDataURL> {
   try {
-    const { base64, metadata } = await getPlaiceholder(src);
+    // For plaiceholder v3, we can pass a URL string or Buffer
+    const result: GetPlaiceholderReturn = await getPlaiceholder(src as any);
+    const { base64, metadata } = result;
+    
     return {
       base64,
       img: {
