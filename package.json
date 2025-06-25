@@ -16,6 +16,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/og": "^0.6.8",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "framer-motion": "^12.18.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.522.0",
