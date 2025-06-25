@@ -7,6 +7,13 @@ export interface SitemapLocation {
   lastmod?: string
 }
 
+// Type for MDX content with possible frontmatter properties
+interface ContentItem {
+  content: string
+  slug: string
+  [key: string]: any // Allow any frontmatter properties
+}
+
 /**
  * Get all dynamic paths for the sitemap
  * This is used by next-sitemap to generate the sitemap
@@ -15,27 +22,27 @@ export async function getDynamicPaths(): Promise<SitemapLocation[]> {
   const paths: SitemapLocation[] = []
 
   // Get all service pages
-  const services = await getAllContent('services')
+  const services = await getAllContent('services') as ContentItem[]
   services.forEach((service) => {
     if (service) {
       paths.push({
         path: `/services/${service.slug}`,
         priority: 0.8,
         changefreq: 'weekly',
-        lastmod: service.lastModified || new Date().toISOString(),
+        lastmod: service.lastModified || service.updatedAt || service.date || new Date().toISOString(),
       })
     }
   })
 
   // Get all blog posts
-  const blogPosts = await getAllContent('blog')
+  const blogPosts = await getAllContent('blog') as ContentItem[]
   blogPosts.forEach((post) => {
     if (post) {
       paths.push({
         path: `/blog/${post.slug}`,
         priority: 0.6,
         changefreq: 'monthly',
-        lastmod: post.lastModified || post.date || new Date().toISOString(),
+        lastmod: post.lastModified || post.updatedAt || post.publishedAt || post.date || new Date().toISOString(),
       })
     }
   })
