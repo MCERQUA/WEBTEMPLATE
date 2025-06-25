@@ -17,10 +17,15 @@ export interface BlurDataURL {
  */
 export async function getBlurDataURL(src: string): Promise<BlurDataURL> {
   try {
-    const { base64, img } = await getPlaiceholder(src);
+    const { base64, metadata } = await getPlaiceholder(src);
     return {
       base64,
-      img
+      img: {
+        src,
+        width: metadata.width,
+        height: metadata.height,
+        type: metadata.format
+      }
     };
   } catch (error) {
     console.error(`Error generating blur placeholder for ${src}:`, error);
