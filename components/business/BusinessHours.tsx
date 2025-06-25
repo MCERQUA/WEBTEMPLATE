@@ -84,8 +84,14 @@ export function BusinessHours({
   className,
   currentTime,
 }: BusinessHoursProps) {
-  const now = currentTime || new Date()
-  const currentDay = DAYS_OF_WEEK[now.getDay()]
+  // Memoize the current time and day to prevent dependency issues
+  const { now, currentDay } = useMemo(() => {
+    const time = currentTime || new Date()
+    return {
+      now: time,
+      currentDay: DAYS_OF_WEEK[time.getDay()]
+    }
+  }, [currentTime])
 
   const { isOpen, currentDayHours } = useMemo(() => {
     const todayHours = hours.find(h => h.day === currentDay)
