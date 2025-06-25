@@ -12,7 +12,7 @@ const services = {
   "residential": {
     title: "Residential Services",
     description: "Complete home solutions with professional care",
-    longDescription: "Our residential services are designed to keep your home in perfect condition. From routine maintenance to emergency repairs, we&apos;ve got you covered.",
+    longDescription: "Our residential services are designed to keep your home in perfect condition. From routine maintenance to emergency repairs, we've got you covered.",
     features: [
       "Regular maintenance programs",
       "Emergency repair services",
@@ -42,7 +42,7 @@ const services = {
   "emergency": {
     title: "Emergency Services",
     description: "24/7 rapid response when you need it most",
-    longDescription: "When emergencies strike, we&apos;re here to help. Our emergency response team is available 24/7 to handle urgent situations.",
+    longDescription: "When emergencies strike, we're here to help. Our emergency response team is available 24/7 to handle urgent situations.",
     features: [
       "24/7 availability",
       "Rapid response (under 2 hours)",
@@ -122,11 +122,25 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <ServiceSchema
         name={service.title}
         description={service.longDescription}
-        provider={siteConfig.name}
+        provider={{
+          name: siteConfig.name,
+          url: siteConfig.url,
+          telephone: siteConfig.phone,
+          email: siteConfig.email,
+          address: {
+            streetAddress: siteConfig.address.street,
+            addressLocality: siteConfig.address.city,
+            addressRegion: siteConfig.address.state,
+            postalCode: siteConfig.address.zip,
+            addressCountry: 'US'
+          }
+        }}
         serviceType="Service"
         areaServed={[siteConfig.address.city, siteConfig.address.state]}
         url={`/services/${resolvedParams.slug}`}
-        priceRange={service.price}
+        offers={{
+          priceRange: service.price
+        }}
       />
       <FAQSchema items={faqItems} />
       <Hero
@@ -135,7 +149,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         primaryButtonText="Get Started"
         primaryButtonHref="/contact"
         secondaryButtonText="Call Now"
-        secondaryButtonHref="tel:5551234567"
+        secondaryButtonHref={`tel:${siteConfig.phone}`}
       />
       
       <section className="py-16 px-4 sm:px-6 lg:px-8">
@@ -172,7 +186,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         buttonText="Schedule Service"
         buttonHref="/contact"
         secondaryButtonText="Call Now"
-        secondaryButtonHref="tel:5551234567"
+        secondaryButtonHref={`tel:${siteConfig.phone}`}
       />
     </>
   )
