@@ -51,7 +51,7 @@ export default function ServicesPage() {
         primaryButtonText="Get Quote"
         primaryButtonHref="/contact"
         secondaryButtonText="Call Us"
-        secondaryButtonHref="tel:5551234567"
+        secondaryButtonHref={`tel:${siteConfig.phone}`}
       />
       
       <ServiceGrid />
