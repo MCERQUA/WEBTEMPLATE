@@ -31,7 +31,12 @@ export function useOptimizedImage({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!lazy || !ref.current) {
+    if (!lazy) {
+      return;
+    }
+
+    const currentRef = ref.current;
+    if (!currentRef) {
       return;
     }
 
@@ -48,12 +53,12 @@ export function useOptimizedImage({
     );
 
     if (observer) {
-      observer.observe(ref.current);
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (observer && ref.current) {
-        observer.unobserve(ref.current);
+      if (observer && currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [lazy, threshold]);
