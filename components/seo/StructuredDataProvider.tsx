@@ -46,7 +46,12 @@ export function StructuredDataProvider({
           serviceType={service.serviceType}
           areaServed={service.areaServed}
           url={service.url}
-          priceRange={service.priceRange}
+          offers={service.offers}
+          aggregateRating={service.aggregateRating}
+          image={service.image}
+          additionalType={service.additionalType}
+          category={service.category}
+          hasOfferCatalog={service.hasOfferCatalog}
         />
       )}
       {children}
