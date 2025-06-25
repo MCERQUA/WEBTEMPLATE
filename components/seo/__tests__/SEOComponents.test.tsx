@@ -91,11 +91,26 @@ describe('SEO Components', () => {
   })
 
   describe('ServiceSchema', () => {
+    const mockProvider = {
+      name: 'Test Company',
+      url: 'https://test.com',
+      telephone: '555-1234',
+      email: 'test@test.com',
+      address: {
+        streetAddress: '123 Main St',
+        addressLocality: 'Test City',
+        addressRegion: 'TX',
+        postalCode: '12345',
+        addressCountry: 'US'
+      }
+    }
+
     it('renders service schema with required fields', () => {
       const { container } = render(
         <ServiceSchema
           name="Test Service"
           description="Test service description"
+          provider={mockProvider}
         />
       )
       
@@ -106,6 +121,7 @@ describe('SEO Components', () => {
       expect(jsonData.name).toBe('Test Service')
       expect(jsonData.description).toBe('Test service description')
       expect(jsonData.provider['@type']).toBe('LocalBusiness')
+      expect(jsonData.provider.name).toBe('Test Company')
     })
 
     it('includes optional fields when provided', () => {
@@ -113,6 +129,7 @@ describe('SEO Components', () => {
         <ServiceSchema
           name="Premium Service"
           description="Premium service description"
+          provider={mockProvider}
           serviceType="Consulting"
           offers={{
             price: "500",
