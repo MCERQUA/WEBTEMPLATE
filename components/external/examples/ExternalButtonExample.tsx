@@ -116,7 +116,7 @@ export function NormalizedExternalButton(props: ExternalButtonProps) {
   const normalizedProps = normalizeProps(props, {
     'isLoading': 'loading',
     'isDisabled': 'disabled',
-  })
+  }) as ExternalButtonProps & { loading?: boolean; disabled?: boolean }
   
   // Map external prop values to our values
   const variantMap: Record<string, string> = {
@@ -149,11 +149,11 @@ export function NormalizedExternalButton(props: ExternalButtonProps) {
           sizeMap[props.size || 'medium'] === 'lg' && "h-12 px-6 text-base",
           props.className
         )}
-        disabled={normalizedProps.disabled || normalizedProps.loading}
+        disabled={normalizedProps.disabled || normalizedProps.loading || props.isDisabled || props.isLoading}
         onClick={props.onClick}
       >
         {props.leftIcon && <span className="mr-2">{props.leftIcon}</span>}
-        {normalizedProps.loading ? (
+        {(normalizedProps.loading || props.isLoading) ? (
           <span className="inline-block animate-spin">⟳</span>
         ) : (
           props.children
